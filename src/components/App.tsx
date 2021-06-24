@@ -1,12 +1,22 @@
 import React from 'react';
-import wave from '../images/login_signup_bottom_wave_placeholder.png'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import AuthPage from '../pages/AuthPage';
+import LoginPage from '../pages/LoginPage';
+import SignupPage from '../pages/SignupPage';
 
 function App() {
   return (
-    <div className="App">
-      Hello
-      <img src={wave} alt="" />
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={AuthPage}/>
+        <Route path="/login" component={LoginPage}/>
+        <Route path="/sign-up" component={SignupPage}/>
+      </Switch>
+    </Router>
   );
 }
 
