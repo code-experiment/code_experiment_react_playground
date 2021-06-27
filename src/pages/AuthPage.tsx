@@ -1,14 +1,13 @@
 import * as React from "react";
-import Button from "../components/Button";
+import ButtonLink from "../components/ButtonLink";
 import wave from '../images/login_signup_bottom_wave_placeholder.png'
-import { useHistory } from "react-router-dom";
 
 const AuthPage = () => {
-  let history = useHistory();
   return (
     <div>
-      <Button text="Login" onClick={() => history.push("/login")} />
-      <Button text="Sign Up" onClick={() => history.push("/sign-up")} />
+      <h1>Welcome to my todo</h1>
+      <ButtonLink text="Login" route={"/login"} />
+      <ButtonLink text="Sign Up" route={"/sign-up"} />
       <img src={wave} alt="wave" />
     </div>
   );
