@@ -10,6 +10,7 @@ test("Button renders correct text and onClick works correctly", () => {
   const buttonElement = screen.getByRole("button", { name: "test" });
   userEvent.click(buttonElement);
 
-  expect(clicked).toEqual(true);
   expect(buttonElement).toBeInTheDocument();
+  expect(buttonElement.innerHTML).toEqual('test')
+  expect(clicked).toEqual(true);
 });
