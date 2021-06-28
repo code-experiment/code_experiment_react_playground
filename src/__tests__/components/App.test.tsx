@@ -3,10 +3,12 @@ import { screen } from "@testing-library/react";
 import { renderWithRouter } from '../utils/utils';
 import App from "../../components/App";
 
-test("The root route renders the Home page", () => {
+test("The root route redirects unauthorized users to the auth page", () => {
   renderWithRouter(<App />);
-  expect(screen.getByText("Home")).toBeInTheDocument();
+  expect(screen.getByText("Welcome to my todo")).toBeInTheDocument();
 });
+
+// TODO:  Create test for root route allows authorizes users
 
 test("The auth route renders the Auth page", () => {
   renderWithRouter(<App />, { route: "/auth" });
