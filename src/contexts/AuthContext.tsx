@@ -1,11 +1,12 @@
-import { createContext } from "react";
+import * as React from "react";
 
-export interface AuthContextInterface {
-  isLoggedIn: boolean;
-  checkLogin: (token: string) => void;
-  logout: () => void;
+export interface authContext {
+  status: string;
+  error: null | string;
+  user: null | {};
+  login: (token: string) => void;
 }
 
-const AuthContext = createContext<AuthContextInterface | null>(null);
+export const AuthContext = React.createContext<authContext | null>(null);
 
 export default AuthContext;

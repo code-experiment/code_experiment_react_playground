@@ -4,6 +4,6 @@ import LoginPage from '../../pages/LoginPage';
 
 test('LoginPage renders correctly', () => {
   render(<LoginPage />);
-  const divElement = screen.getByText('LoginPage');
-  expect(divElement).toBeInTheDocument();
+  const element = screen.getByText('Login');
+  expect(element).toBeInTheDocument();
 });

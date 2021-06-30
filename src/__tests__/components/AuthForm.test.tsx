@@ -4,6 +4,8 @@ import AuthForm from '../../components/AuthForm';
 
 test('AuthForm renders correctly', () => {
   render(<AuthForm />);
-  const divElement = screen.getByText('AuthForm');
-  expect(divElement).toBeInTheDocument();
+  const username = screen.getByText('Username');
+  const password = screen.getByText('Password');
+  expect(password).toBeInTheDocument();
+  expect(username).toBeInTheDocument();
 });

@@ -1,3 +1,4 @@
+// TODO:  Need to figure out how to test this now that I have context controlling this
 import React from "react";
 import { screen } from "@testing-library/react";
 import { renderWithRouter } from '../utils/utils';
@@ -8,8 +9,6 @@ test("The root route redirects unauthorized users to the auth page", () => {
   expect(screen.getByText("Welcome to my todo")).toBeInTheDocument();
 });
 
-// TODO:  Create test for root route allows authorizes users
-
 test("The auth route renders the Auth page", () => {
   renderWithRouter(<App />, { route: "/auth" });
   expect(screen.getByText("Welcome to my todo")).toBeInTheDocument();
@@ -17,7 +16,7 @@ test("The auth route renders the Auth page", () => {
 
 test("The login route renders the Login page", () => {
   renderWithRouter(<App />, { route: "/login" });
-  expect(screen.getByText("LoginPage")).toBeInTheDocument();
+  expect(screen.getByText("Login")).toBeInTheDocument();
 });
 
 test("The sign-up route renders the Signup page", () => {
