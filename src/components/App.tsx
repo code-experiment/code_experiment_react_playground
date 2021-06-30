@@ -6,7 +6,6 @@ import UnauthenticatedApp from './UnauthenticatedApp';
 // Got the idea for this type of app from https://kentcdodds.com/blog/authentication-in-react-applications
 function App() {
   const authContext = React.useContext(AuthContext);
-  console.log(authContext)
   return authContext?.user ? <AuthenticatedApp /> : <UnauthenticatedApp />
 }
 

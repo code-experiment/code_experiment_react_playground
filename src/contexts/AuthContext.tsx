@@ -1,12 +1,12 @@
 import * as React from "react";
 
-export interface authContext {
+export interface IauthContext {
   status: string;
   error: null | string;
   user: null | {};
   login: (token: string) => void;
 }
 
-export const AuthContext = React.createContext<authContext | null>(null);
+export const AuthContext = React.createContext<IauthContext | null>(null);
 
 export default AuthContext;

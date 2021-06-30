@@ -1,6 +1,6 @@
 import * as React from "react";
 import axios from "axios";
-import { authContext, AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 const API_URL = "http://localhost:8000/check-login";
 
@@ -9,8 +9,6 @@ interface authContextState {
   error: null | string;
   user: null | {};
 }
-
-// export const AuthContext = React.createContext<authContextState | null>(null);
 
 const AuthContextProvider = (props: any) => {
   const [state, setState] = React.useState<authContextState>({
@@ -33,7 +31,6 @@ const AuthContextProvider = (props: any) => {
     axios
       .post(API_URL, {}, { headers: { Authorization: `Bearer ${token}` } })
       .then((response) => {
-        console.log("res", response);
         setState({
           status: "success",
           error: null,

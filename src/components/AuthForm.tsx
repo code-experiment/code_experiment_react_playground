@@ -31,28 +31,27 @@ const AuthForm = (props: AuthFormProps) => {
   password.current = watch("password", "");
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+    const username = data.username;
+    const password = data.password;
     let formData = new FormData();
-    formData.append("username", data.username);
-    formData.append("password", data.password);
+    formData.append("username", username);
+    formData.append("password", password);
     axios({
       method: "post",
-      url: "http://localhost:8000/login",
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
+      url: `http://localhost:8000/${props.signup ? 'create-user' : 'login'}`,
+      data: props.signup ? {username, password} : formData,
+      headers: { "Content-Type": props.signup ? "application/json" : "multipart/form-data" },
     })
       .then((res) => {
-        console.log(res);
         authContext?.login(res.data.access_token)
         history.push('/')
       })
       .catch((err) => {
-        console.error(err.response.data.detail);
+        console.error(err.response);
         setError("server", {
           type: "server",
           message: err.response.data.detail,
         });
-        console.log(errors);
       });
   };
 
