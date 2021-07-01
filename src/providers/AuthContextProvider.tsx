@@ -38,8 +38,13 @@ const AuthContextProvider = (props: any) => {
         });
       })
       .catch((error) => {
-        console.error("Error", error);
-        setState({ status: "error", error: "oops", user: null });
+        console.error("Error", error.response);
+        // TODO:  Look further into how to work with the errors better.
+        // setState({ status: "error", error: "oops", user: null });
+        if (error.response.statusText === "Unauthorized") {
+          localStorage.removeItem("code_experiment_secure_token");
+          setState({ status: "success", error: null, user: null });
+        }
       });
   };
 
@@ -49,11 +54,13 @@ const AuthContextProvider = (props: any) => {
   };
 
   const logout = () => {
+    // TODO:  Might want to do a try/catch
     localStorage.removeItem("code_experiment_secure_token");
+    setState({ status: "success", error: null, user: null });
   };
 
   return (
-    <AuthContext.Provider value={{ ...state, login }}>
+    <AuthContext.Provider value={{ ...state, login, logout }}>
       {state.status === "pending" ? (
         "Loading..."
       ) : state.status === "error" ? (

@@ -1,4 +1,5 @@
 // TODO:  Add regex to the password if you want https://stackoverflow.com/questions/19605150/
+// TODO:  Need to clear server error in order to submit
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";

@@ -5,6 +5,7 @@ export interface IauthContext {
   error: null | string;
   user: null | {};
   login: (token: string) => void;
+  logout: () => void;
 }
 
 export const AuthContext = React.createContext<IauthContext | null>(null);
