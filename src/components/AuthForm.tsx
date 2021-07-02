@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import AuthContext from "../contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
@@ -18,7 +18,7 @@ export interface AuthFormProps {
 }
 
 const AuthForm = (props: AuthFormProps) => {
-  const authContext = React.useContext(AuthContext);
+  const { login } = useAuth();
   let history = useHistory();
   const {
     register,
@@ -39,20 +39,34 @@ const AuthForm = (props: AuthFormProps) => {
     formData.append("password", password);
     axios({
       method: "post",
-      url: `http://localhost:8000/${props.signup ? 'create-user' : 'login'}`,
-      data: props.signup ? {username, password} : formData,
-      headers: { "Content-Type": props.signup ? "application/json" : "multipart/form-data" },
+      url: `http://localhost:8000/${props.signup ? "create-user" : "login"}`,
+      data: props.signup ? { username, password } : formData,
+      headers: {
+        "Content-Type": props.signup
+          ? "application/json"
+          : "multipart/form-data",
+      },
     })
       .then((res) => {
-        authContext?.login(res.data.access_token)
-        history.push('/')
+        login(res.data.access_token);
+        history.push("/");
       })
       .catch((err) => {
+        console.error(err);
         console.error(err.response);
-        setError("server", {
-          type: "server",
-          message: err.response.data.detail,
-        });
+        console.error(err.request);
+        console.error(err.message);
+        if (err.response) {
+          setError("server", {
+            type: "server",
+            message: err.response.data.detail,
+          });
+        } else {
+          setError("server", {
+            type: "server",
+            message: err.message,
+          });
+        }
       });
   };
 

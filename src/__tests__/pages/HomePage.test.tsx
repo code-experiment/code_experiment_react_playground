@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '../../utils/test-utils';
 import HomePage from '../../pages/HomePage';
+
 
 test('HomePage renders correctly', () => {
   render(<HomePage />);

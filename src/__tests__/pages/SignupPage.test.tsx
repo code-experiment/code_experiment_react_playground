@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '../../utils/test-utils';
 import SignupPage from '../../pages/SignupPage';
 
 test('SignupPage renders correctly', () => {

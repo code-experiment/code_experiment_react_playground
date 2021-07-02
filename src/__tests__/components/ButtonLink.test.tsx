@@ -1,10 +1,10 @@
 import React from "react";
-import { screen } from "@testing-library/react";
+import { render, screen } from '../../utils/test-utils';
 import ButtonLink from "../../components/ButtonLink";
-import { renderWithRouter } from "../utils/utils";
+
 
 test("ButtonLink renders correctly with the correct text and href", () => {
-  renderWithRouter(<ButtonLink text="test" route="/" />);
+  render(<ButtonLink text="test" route="/" />);
 
   const buttonLinkElement = screen.getByRole("link", { name: "test" });
 
