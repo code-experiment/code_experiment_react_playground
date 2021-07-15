@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from "../utils/test-utils";
-import App from '../components/App';
+import renderWithRouter from "../../utils/test-utils";
+import App from '../App';
 
 test('Make sure the Login button appears', () => {
   render(<App />);

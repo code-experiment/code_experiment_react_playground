@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import LoginPage from "../pages/LoginPage";
+import LoginPage from "../LoginPage";
 
 test("Login Page has the correct text", () => {
   render(<LoginPage />);
