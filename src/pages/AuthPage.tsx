@@ -1,6 +1,6 @@
 import * as React from "react";
 import Button from "../components/Button";
-import wave from '../images/login_signup_bottom_wave_placeholder.png'
+import wave from "../images/login_signup_bottom_wave_placeholder.png";
 import { useHistory } from "react-router-dom";
 
 const AuthPage = () => {
