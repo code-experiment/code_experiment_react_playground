@@ -43,7 +43,7 @@ test("When I click the sign-up button it takes me to the sign-up page", () => {
   expect(screen.getByText("Create account")).toBeInTheDocument();
 });
 
-//TODO: Decide if I should use this type of testing or the button type above
+//Route Checking
 test("When a user goes to the route /sign-up the sign-up page renders", () => {
   renderWithRouter(<App />, { route: "/sign-up" });
 
@@ -54,4 +54,10 @@ test("When a user goes to the route /login the Login page renders", () => {
   renderWithRouter(<App />, { route: "/login" });
 
   expect(screen.getByText("login page")).toBeInTheDocument();
+});
+
+test("When a user goes to a route that doesn't exist the no match page should render", () => {
+  renderWithRouter(<App />, { route: "/asdoijasdoij" });
+
+  expect(screen.getByText("No Match")).toBeInTheDocument();
 });

@@ -3,14 +3,16 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AuthPage from "../pages/AuthPage";
 import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
+import NoMatch from "../pages/NoMatch";
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/" component={AuthPage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/sign-up" component={SignupPage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/sign-up" component={SignupPage} />
+        <Route component={NoMatch} />
       </Switch>
     </Router>
   );
