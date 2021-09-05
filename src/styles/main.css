@@ -6,6 +6,7 @@
 
 body {
   margin: 0;
+  font-family: "Roboto", sans-serif;
 }
 
 #root {
@@ -13,32 +14,36 @@ body {
   height: 100vh;
 }
 
-.container {
+.two-row-container {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
   width: 100%;
-  margin: 0 auto;
+}
+
+.top-content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-.main-button {
-  width: 100%;
-  margin: 1em 0px;
-  padding: 0.5em;
-  font-size: 1.25rem;
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  background-color: white;
-  border-radius: 0.25em;
-  box-shadow: 6px 4px 10px 0px #0000001c;
-  border: none;
+.top-content h1 {
+  font-size: 3rem;
+  color: gray;
+}
+
+.bottom-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .button-wrapper {
-  position: absolute;
-  bottom: 0;
-  z-index: 1;
+  max-width: 400px;
   width: 80%;
+  margin: 0 auto;
 }
 
 .wave-img {
@@ -46,4 +51,27 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
+}
+
+.main-button {
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  font-size: 1.25rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  background-color: white;
+  border-radius: 0.25em;
+  box-shadow: 6px 8px 10px 0px #00000063;
+  border: none;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 600px) {
+  .bottom-content {
+    background-image: none !important;
+    background-color: hsl(232deg 93% 68%);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
