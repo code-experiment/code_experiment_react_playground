@@ -10,9 +10,8 @@ const AuthPage = () => {
       <div className="top-content">
         <h1>TODO APP</h1>
         <h2>Welcome to my todo</h2>
-        <p>What's going to happen tomorrow?</p>
+        <p>Whats going to happen tomorrow?</p>
       </div>
-      {/* <div className="bottom-content" style={{ background: "green" }}> */}
       <div
         className="bottom-content"
         style={{ backgroundImage: `url(${wave})` }}
