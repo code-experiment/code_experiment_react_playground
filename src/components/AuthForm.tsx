@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import api from "../utils/api";
 
 type Inputs = {
   Email: string;
@@ -14,9 +15,13 @@ const AuthForm = () => {
     formState: { errors },
     watch,
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
   const password = React.useRef({});
   password.current = watch("Password", "");
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data);
+    console.log(process.env.REACT_APP_BASE_URL);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
