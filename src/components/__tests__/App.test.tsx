@@ -6,7 +6,7 @@ import App from "../App";
 test("Make sure the Login button appears for root route", () => {
   render(<App />);
 
-  const loginButton = screen.getByRole("button", { name: "Login" });
+  const loginButton = screen.getByRole("button", { name: "Log In" });
 
   expect(loginButton).toBeInTheDocument();
 });
@@ -30,7 +30,7 @@ test("Make sure the Wave image appears for root route", () => {
 test("When I click the login button it takes me to the login page", () => {
   renderWithRouter(<App />);
 
-  userEvent.click(screen.getByRole("button", { name: "Login" }));
+  userEvent.click(screen.getByRole("button", { name: "Log In" }));
 
   expect(screen.getByText("login page")).toBeInTheDocument();
 });

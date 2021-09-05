@@ -6,10 +6,23 @@ import { useHistory } from "react-router-dom";
 const AuthPage = () => {
   let history = useHistory();
   return (
-    <div>
-      <Button text="Login" onClick={() => history.push("/login")} />
-      <Button text="Sign Up" onClick={() => history.push("/sign-up")} />
-      <img src={wave} alt="wave" />
+    <div className="container">
+      <h1>Todo App</h1>
+      <h2>Welcome to my todo</h2>
+      <p>What's going to happen tomorrow?</p>
+      <div className="button-wrapper">
+        <Button text="Log In" onClick={() => history.push("/login")} />
+        <Button
+          text="Sign Up"
+          styles={{
+            backgroundColor: "transparent",
+            boxShadow: "none",
+            color: "white",
+          }}
+          onClick={() => history.push("/sign-up")}
+        />
+      </div>
+      <img className="wave-img" src={wave} alt="wave" />
     </div>
   );
 };
