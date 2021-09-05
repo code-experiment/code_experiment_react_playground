@@ -19,14 +19,6 @@ test("Make sure the Sign Up button appears for root route", () => {
   expect(signUpButton).toBeInTheDocument();
 });
 
-test("Make sure the Wave image appears for root route", () => {
-  render(<App />);
-
-  const waveImage = screen.getByRole("img", { name: "wave" });
-
-  expect(waveImage).toBeInTheDocument();
-});
-
 test("When I click the login button it takes me to the login page", () => {
   renderWithRouter(<App />);
 
