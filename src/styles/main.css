@@ -44,6 +44,8 @@ body {
   max-width: 400px;
   width: 80%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .wave-img {
@@ -53,18 +55,20 @@ body {
   width: 100%;
 }
 
-.main-button {
+.main-button-link {
   width: 100%;
   margin-bottom: 1em;
   padding: 0.5em;
   font-size: 1.25rem;
   font-family: "Roboto", sans-serif;
-  font-weight: 900;
+  color: black;
   background-color: white;
   border-radius: 0.25em;
   box-shadow: 6px 8px 10px 0px #00000063;
   border: none;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 }
 
 @media only screen and (min-width: 600px) {

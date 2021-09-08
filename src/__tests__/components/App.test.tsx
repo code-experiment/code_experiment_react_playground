@@ -1,11 +1,11 @@
 // TODO:  Need to figure out how to test an authenticated user
 import React from "react";
-import { render, screen } from '../../utils/test-utils';
+import { render, screen } from "../../utils/test-utils";
 import App from "../../components/App";
 
 test("The root route redirects unauthorized users to the auth page", () => {
   render(<App />);
-  expect(screen.getByText("Welcome to my todo")).toBeInTheDocument();
+  expect(screen.getByText("TODO APP")).toBeInTheDocument();
 });
 
 test("The login route renders the Login page", () => {

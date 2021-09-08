@@ -1,10 +1,10 @@
 import React from "react";
-import { render, screen } from '../../utils/test-utils';
+import { render, screen } from "../../utils/test-utils";
 import AuthPage from "../../pages/AuthPage";
 
 test("Renders Login Link", () => {
   render(<AuthPage />);
-  const loginLink = screen.getByRole("link", { name: "Login" });
+  const loginLink = screen.getByRole("link", { name: "Log In" });
   expect(loginLink).toBeInTheDocument();
 });
 
