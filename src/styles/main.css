@@ -20,14 +20,20 @@ body {
   width: 100%;
 }
 
-.top-content {
+.two-row-container-even {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  width: 100%;
+}
+
+.two-row-container > .top-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.top-content h1 {
+.two-row-container > .top-content h1 {
   font-size: 3rem;
   color: gray;
 }

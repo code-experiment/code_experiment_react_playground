@@ -10,7 +10,7 @@ test("The root route redirects unauthorized users to the auth page", () => {
 
 test("The login route renders the Login page", () => {
   render(<App />, { route: "/login" });
-  expect(screen.getByText("Login")).toBeInTheDocument();
+  expect(screen.getByText("Welcome back")).toBeInTheDocument();
 });
 
 test("The sign-up route renders the Signup page", () => {

@@ -7,7 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import api from "../utils/api";
 
 type Inputs = {
-  username: string;
+  email: string;
   password: string;
   password_repeat: string;
   server: string;
@@ -32,14 +32,14 @@ const AuthForm = (props: AuthFormProps) => {
   password.current = watch("password", "");
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const username = data.username;
+    const username = data.email;
     const password = data.password;
     let formData = new FormData();
     formData.append("username", username);
     formData.append("password", password);
     api({
       method: "post",
-      url: `http://localhost:8000/${props.signup ? "create-user" : "login"}`,
+      url: `/${props.signup ? "create-user" : "login"}`,
       data: props.signup ? { username, password } : formData,
       headers: {
         "Content-Type": props.signup
@@ -72,19 +72,24 @@ const AuthForm = (props: AuthFormProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="username">Username</label>
+      <label htmlFor="email">Email</label>
       <input
-        id="username"
-        aria-invalid={errors.username ? "true" : "false"}
-        {...register("username", {
-          required: "You must specify a username",
+        type="email"
+        id="email"
+        aria-invalid={errors.email ? "true" : "false"}
+        {...register("email", {
+          required: "You must specify an Email",
           minLength: {
             value: 8,
-            message: "username must have at least 8 characters",
+            message: "Email must have at least 8 characters",
+          },
+          pattern: {
+            value: /^\S+@\S+$/i,
+            message: "Please supply a valid email address.",
           },
         })}
       />
-      {errors.username && <p role="alert">{errors.username.message}</p>}
+      {errors.email && <p className="error-text">{errors.email.message}</p>}
 
       <label htmlFor="password">Password</label>
       <input
@@ -127,7 +132,11 @@ const AuthForm = (props: AuthFormProps) => {
           </button>
         </p>
       )}
-      <input type="submit" onClick={handleSubmit(onSubmit)} />
+      <input
+        type="submit"
+        onClick={handleSubmit(onSubmit)}
+        value={props.signup ? "Sign Up" : "Log in"}
+      />
     </form>
   );
 };
