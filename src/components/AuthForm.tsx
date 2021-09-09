@@ -2,9 +2,9 @@
 // TODO:  Need to clear server error in order to submit
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
 import { useForm, SubmitHandler } from "react-hook-form";
+import api from "../utils/api";
 
 type Inputs = {
   username: string;
@@ -37,7 +37,7 @@ const AuthForm = (props: AuthFormProps) => {
     let formData = new FormData();
     formData.append("username", username);
     formData.append("password", password);
-    axios({
+    api({
       method: "post",
       url: `http://localhost:8000/${props.signup ? "create-user" : "login"}`,
       data: props.signup ? { username, password } : formData,
