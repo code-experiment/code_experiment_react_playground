@@ -1,6 +1,7 @@
 // TODO:  Possibly change from useState to useReducer
 import * as React from "react";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
+import api from "../utils/api";
 
 interface IauthContext {
   status: string;
@@ -17,7 +18,6 @@ interface authContextState {
 }
 
 const AuthContext = React.createContext<IauthContext | undefined>(undefined);
-const API_URL = "http://localhost:8000/check-login";
 
 const AuthContextProvider = (props: any) => {
   const [state, setState] = React.useState<authContextState>({
@@ -28,8 +28,12 @@ const AuthContextProvider = (props: any) => {
 
   const checkLogin = React.useCallback((token: string) => {
     setState({ status: "pending", error: null, user: null });
-    axios
-      .post(API_URL, {}, { headers: { Authorization: `Bearer ${token}` } })
+    api
+      .post(
+        "/check-login",
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
       .then((response) => {
         setState({
           status: "success",
