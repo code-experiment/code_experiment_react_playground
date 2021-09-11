@@ -4,7 +4,7 @@ import ButtonLink from "../components/ButtonLink";
 
 const LoginPage = () => {
   return (
-    <div className="two-row-container-even">
+    <div className="auth-container">
       <div className="top-content">
         <h1>Welcome back</h1>
         <div>Sign in to continue</div>

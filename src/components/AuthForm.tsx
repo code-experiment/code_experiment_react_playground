@@ -5,11 +5,12 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useForm, SubmitHandler } from "react-hook-form";
 import api from "../utils/api";
+import Button from "./Button";
 
 type Inputs = {
   email: string;
   password: string;
-  password_repeat: string;
+  confirm_password: string;
   server: string;
 };
 
@@ -71,68 +72,79 @@ const AuthForm = (props: AuthFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        aria-invalid={errors.email ? "true" : "false"}
-        {...register("email", {
-          required: "You must specify an Email",
-          minLength: {
-            value: 8,
-            message: "Email must have at least 8 characters",
-          },
-          pattern: {
-            value: /^\S+@\S+$/i,
-            message: "Please supply a valid email address.",
-          },
-        })}
-      />
-      {errors.email && <p className="error-text">{errors.email.message}</p>}
+    <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
+      <div className="auth-form-item">
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="janedoe999@gmail.com"
+          aria-invalid={errors.email ? "true" : "false"}
+          {...register("email", {
+            required: "You must specify an Email",
+            minLength: {
+              value: 8,
+              message: "Email must have at least 8 characters",
+            },
+            pattern: {
+              value: /^\S+@\S+$/i,
+              message: "Please supply a valid email address.",
+            },
+          })}
+        />
+        {errors.email && <p className="error-text">{errors.email.message}</p>}
+      </div>
 
-      <label htmlFor="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        aria-invalid={errors.password ? "true" : "false"}
-        {...register("password", {
-          required: "You must specify a password",
-          minLength: {
-            value: 8,
-            message: "Password must have at least 8 characters",
-          },
-        })}
-      />
-      {errors.password && <p role="alert">{errors.password.message}</p>}
+      <div className="auth-form-item">
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          placeholder="Enter your password"
+          aria-invalid={errors.password ? "true" : "false"}
+          {...register("password", {
+            required: "You must specify a password",
+            minLength: {
+              value: 8,
+              message: "Password must have at least 8 characters",
+            },
+          })}
+        />
+        {errors.password && <p role="alert">{errors.password.message}</p>}
+      </div>
 
-      {props.signup && (
-        <>
-          <label htmlFor="password_repeat">Repeat password</label>
-          <input
-            id="password_repeat"
-            type="password"
-            aria-invalid={errors.password_repeat ? "true" : "false"}
-            {...register("password_repeat", {
-              validate: (value) =>
-                value === password.current || "The passwords do not match",
-            })}
-          />
-          {errors.password_repeat && (
-            <p role="alert">{errors.password_repeat.message}</p>
-          )}
-        </>
-      )}
+      <div className="auth-form-item">
+        {props.signup && (
+          <>
+            <label htmlFor="confirm_password">Confirm password</label>
+            <input
+              id="confirm_password"
+              type="password"
+              placeholder="Enter your confirm password"
+              aria-invalid={errors.confirm_password ? "true" : "false"}
+              {...register("confirm_password", {
+                validate: (value) =>
+                  value === password.current || "The passwords do not match",
+              })}
+            />
+            {errors.confirm_password && (
+              <p role="alert">{errors.confirm_password.message}</p>
+            )}
+          </>
+        )}
 
-      {errors.server && (
-        <p role="alert">
-          {errors.server.message}{" "}
-          <button type="button" onClick={() => clearErrors("server")}>
-            x
-          </button>
-        </p>
-      )}
+        {errors.server && (
+          <p role="alert">
+            {errors.server.message}{" "}
+            <button type="button" onClick={() => clearErrors("server")}>
+              x
+            </button>
+          </p>
+        )}
+      </div>
+
       <input
+        className="auth-form-button"
         type="submit"
         onClick={handleSubmit(onSubmit)}
         value={props.signup ? "Sign Up" : "Log in"}

@@ -14,7 +14,7 @@ test("AuthForm renders correctly with signup prop", () => {
   render(<AuthForm signup />);
   const emailInput = screen.getByRole("textbox", { name: "Email" });
   const passwordInput = screen.getByText("Password");
-  const passwordRepeatInput = screen.getByText("Repeat password");
+  const passwordRepeatInput = screen.getByText("Confirm password");
   expect(emailInput).toBeInTheDocument();
   expect(passwordInput).toBeInTheDocument();
   expect(passwordRepeatInput).toBeInTheDocument();

@@ -15,5 +15,5 @@ test("The login route renders the Login page", () => {
 
 test("The sign-up route renders the Signup page", () => {
   render(<App />, { route: "/sign-up" });
-  expect(screen.getByText("SignupPage")).toBeInTheDocument();
+  expect(screen.getByText("Create account")).toBeInTheDocument();
 });

@@ -3,8 +3,11 @@ import Authform from "../components/AuthForm";
 
 const SignupPage = () => {
   return (
-    <div>
-      <h1>SignupPage</h1>
+    <div className="auth-container">
+      <div className="top-content">
+        <h1>Create account</h1>
+        <div>Sign up to continue</div>
+      </div>
       <Authform signup />
     </div>
   );

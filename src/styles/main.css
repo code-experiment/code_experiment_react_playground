@@ -20,12 +20,6 @@ body {
   width: 100%;
 }
 
-.two-row-container-even {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  width: 100%;
-}
-
 .two-row-container > .top-content {
   display: flex;
   flex-direction: column;
@@ -75,6 +69,46 @@ body {
   cursor: pointer;
   text-align: center;
   text-decoration: none;
+}
+
+/* Auth Form Styles */
+.auth-container {
+  display: grid;
+  grid-template-rows: 20% 80%;
+  max-width: 500px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.auth-container .auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.auth-container .auth-form-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form-item label {
+  margin-bottom: 0.5em;
+}
+
+.auth-form-item input {
+  border: none;
+  border-bottom: 1px solid #d5d5d5;
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
+
+.auth-container .auth-form-button {
+  font-family: "Roboto", sans-serif;
+  background-color: hsl(232deg 93% 68%);
+  padding: 0.75em;
+  border: none;
+  border-radius: 0.25em;
+  color: white;
 }
 
 @media only screen and (min-width: 600px) {
