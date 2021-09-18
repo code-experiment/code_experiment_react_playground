@@ -1,6 +1,5 @@
 import * as React from "react";
 import Authform from "../components/AuthForm";
-import ButtonLink from "../components/ButtonLink";
 
 const LoginPage = () => {
   return (

@@ -2,17 +2,6 @@ import React from "react";
 import { render, screen } from "../../utils/test-utils";
 import LoginPage from "../../pages/LoginPage";
 
-// test("LoginPage renders correctly", () => {
-//   render(<LoginPage />);
-//   const title = screen.getByRole("heading", { name: "Welcome back" });
-//   expect(title).toBeInTheDocument();
-// });
-
-// test("Forgot Password Link Is On The Page", () => {
-//   render(<LoginPage />);
-
-// })
-
 describe("LoginPage Renders Correct Items", () => {
   beforeEach(() => {
     render(<LoginPage />);

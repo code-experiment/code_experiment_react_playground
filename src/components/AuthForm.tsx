@@ -1,11 +1,9 @@
 // TODO:  Add regex to the password if you want https://stackoverflow.com/questions/19605150/
-// TODO:  Need to clear server error in order to submit
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useForm, SubmitHandler } from "react-hook-form";
 import api from "../utils/api";
-import Button from "./Button";
 
 type Inputs = {
   email: string;
@@ -19,6 +17,8 @@ export interface AuthFormProps {
 }
 
 const AuthForm = (props: AuthFormProps) => {
+  // TODO: At some point try and figure out how to use react-hook-forms isSubmitting
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
   const { login } = useAuth();
   let history = useHistory();
   const {
@@ -26,13 +26,13 @@ const AuthForm = (props: AuthFormProps) => {
     handleSubmit,
     watch,
     setError,
-    clearErrors,
     formState: { errors },
   } = useForm<Inputs>();
   const password = React.useRef({});
   password.current = watch("password", "");
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
+    setIsSubmitting(true);
     const username = data.email;
     const password = data.password;
     let formData = new FormData();
@@ -50,25 +50,32 @@ const AuthForm = (props: AuthFormProps) => {
     })
       .then((res) => {
         login(res.data.access_token);
+        setIsSubmitting(false);
         history.push("/");
       })
       .catch((err) => {
-        console.error(err);
-        console.error(err.response);
-        console.error(err.request);
-        console.error(err.message);
+        setIsSubmitting(false);
         if (err.response) {
-          setError("server", {
+          setError("email", {
             type: "server",
             message: err.response.data.detail,
           });
         } else {
-          setError("server", {
+          // TODO: At some point make a model instead.  Because this isn't an email error
+          setError("email", {
             type: "server",
             message: err.message,
           });
         }
       });
+  };
+
+  const setButtonText = () => {
+    if (isSubmitting) {
+      return "Submitting...";
+    } else {
+      return props.signup ? "Sign Up" : "Log in";
+    }
   };
 
   return (
@@ -82,17 +89,17 @@ const AuthForm = (props: AuthFormProps) => {
           aria-invalid={errors.email ? "true" : "false"}
           {...register("email", {
             required: "You must specify an Email",
-            minLength: {
-              value: 8,
-              message: "Email must have at least 8 characters",
-            },
             pattern: {
               value: /^\S+@\S+$/i,
               message: "Please supply a valid email address.",
             },
           })}
         />
-        {errors.email && <p className="error-text">{errors.email.message}</p>}
+        {errors.email && (
+          <p className="error-text" role="alert">
+            {errors.email.message}
+          </p>
+        )}
       </div>
 
       <div className="auth-form-item">
@@ -110,7 +117,11 @@ const AuthForm = (props: AuthFormProps) => {
             },
           })}
         />
-        {errors.password && <p role="alert">{errors.password.message}</p>}
+        {errors.password && (
+          <p className="error-text" role="alert">
+            {errors.password.message}
+          </p>
+        )}
       </div>
 
       <div className="auth-form-item">
@@ -128,26 +139,20 @@ const AuthForm = (props: AuthFormProps) => {
               })}
             />
             {errors.confirm_password && (
-              <p role="alert">{errors.confirm_password.message}</p>
+              <p className="error-text" role="alert">
+                {errors.confirm_password.message}
+              </p>
             )}
           </>
-        )}
-
-        {errors.server && (
-          <p role="alert">
-            {errors.server.message}{" "}
-            <button type="button" onClick={() => clearErrors("server")}>
-              x
-            </button>
-          </p>
         )}
       </div>
 
       <input
+        disabled={isSubmitting}
         className="auth-form-button"
         type="submit"
         onClick={handleSubmit(onSubmit)}
-        value={props.signup ? "Sign Up" : "Log in"}
+        value={setButtonText()}
       />
     </form>
   );
