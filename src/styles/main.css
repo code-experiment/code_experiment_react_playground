@@ -1,3 +1,20 @@
+:root {
+  --main-font: "Roboto", sans-serif;
+  --main-font-color: rgba(43, 43, 43);
+  --secondary-font-color: rgba(144, 144, 144);
+
+  --main-background-color: rgba(255, 255, 255);
+  --secondary-background-color: rgba(85, 105, 242);
+
+  --main-button-background-color: rgba(85, 105, 242);
+  --main-button-font-color: rgba(255, 255, 255);
+
+  --secondary-button-background-color: rgba(255, 255, 255);
+  --secondary-button-font-color: rgba(43, 43, 43);
+
+  --button-box-shadow: 6px 8px 10px 0px #00000063;
+}
+
 *,
 *::before,
 *::after {
@@ -6,7 +23,8 @@
 
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--main-font);
+  color: var(--main-font-color);
 }
 
 #root {
@@ -29,7 +47,11 @@ body {
 
 .two-row-container > .top-content h1 {
   font-size: 3rem;
-  color: gray;
+  color: var(--secondary-font-color);
+}
+
+.two-row-container > .top-content p {
+  color: var(--secondary-font-color);
 }
 
 .bottom-content {
@@ -60,15 +82,19 @@ body {
   margin-bottom: 1em;
   padding: 0.5em;
   font-size: 1.25rem;
-  font-family: "Roboto", sans-serif;
-  color: black;
-  background-color: white;
+  font-family: var(--main-font);
+  color: var(--secondary-button-font-color);
+  background-color: var(--secondary-button-background-color);
   border-radius: 0.25em;
-  box-shadow: 6px 8px 10px 0px #00000063;
+  box-shadow: var(--button-box-shadow);
   border: none;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
+}
+
+.auth-container > .top-content div {
+  color: var(--secondary-font-color);
 }
 
 /* Auth Form Styles */
@@ -97,24 +123,24 @@ body {
 
 .auth-form-item input {
   border: none;
-  border-bottom: 1px solid #d5d5d5;
+  border-bottom: 1px solid var(--secondary-font-color);
   padding-bottom: 1em;
   padding-top: 1em;
 }
 
 .auth-container .auth-form-button {
-  font-family: "Roboto", sans-serif;
-  background-color: hsl(232deg 93% 68%);
+  font-family: var(--main-font);
+  background-color: var(--main-button-background-color);
+  color: var(--main-button-font-color);
   padding: 0.75em;
   border: none;
   border-radius: 0.25em;
-  color: white;
 }
 
 @media only screen and (min-width: 600px) {
   .bottom-content {
     background-image: none !important;
-    background-color: hsl(232deg 93% 68%);
+    background-color: var(--secondary-background-color);
     background-repeat: no-repeat;
     background-size: cover;
   }

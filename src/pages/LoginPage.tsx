@@ -9,14 +9,7 @@ const LoginPage = () => {
         <h1>Welcome back</h1>
         <div>Sign in to continue</div>
       </div>
-      <div className="form-wrapper">
-        <Authform />
-        <ButtonLink
-          text="Forgot password"
-          route="/forgot-password"
-          styles={{ backgroundColor: "none", boxShadow: "none" }}
-        />
-      </div>
+      <Authform />
     </div>
   );
 };
