@@ -1,14 +1,14 @@
 // TODO:  Research further as I might be wrong
-import { render} from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthContextProvider } from "../contexts/AuthContext";
 
-function AppProviders({children}) {
+function AppProviders({ children }) {
   return (
     <Router>
       <AuthContextProvider>{children}</AuthContextProvider>
     </Router>
-  )
+  );
 }
 
 const customRender = (ui, { route = "/" } = {}, options) => {
@@ -17,7 +17,7 @@ const customRender = (ui, { route = "/" } = {}, options) => {
 };
 
 // re-export everything
-export * from '@testing-library/react'
+export * from "@testing-library/react";
 
 // override render method
-export { customRender as render }
+export { customRender as render };
