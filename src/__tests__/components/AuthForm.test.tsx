@@ -1,3 +1,4 @@
+// TODO:  Need to finish figuring out how to mock form submissions.  Look into jest.
 import React from "react";
 import { render, screen } from "../../utils/test-utils";
 import userEvent from "@testing-library/user-event";
@@ -21,22 +22,62 @@ test("AuthForm renders correctly with signup prop", () => {
   expect(passwordRepeatInput).toBeInTheDocument();
 });
 
-// Submiting form with empty fields renders errors and isn't submitted
-// You must specify an Email and You must specify a password
-// TODO:  Need to finish figuring out how to mock form submissions
-test("Submiting form with empty fields renders errors", async () => {
-  render(<AuthForm signup />);
-  const submitButton = screen.getByRole("button", { name: "Sign Up" });
-  userEvent.click(submitButton);
+describe("Auth Form Renders Correct Errors", () => {
+  beforeEach(() => {
+    render(<AuthForm signup />);
+  });
 
-  const emailError = await screen.findByText("You must specify an Email");
-  const passwordError = await screen.findByText("You must specify a password");
-  expect(emailError).toBeInTheDocument();
-  expect(passwordError).toBeInTheDocument();
+  test("Submiting form with empty fields renders correct errors", async () => {
+    const submitButton = screen.getByRole("button", { name: "Sign Up" });
+    userEvent.click(submitButton);
+
+    const emailError = await screen.findByText("You must specify an Email");
+    const passwordError = await screen.findByText(
+      "You must specify a password"
+    );
+    expect(emailError).toBeInTheDocument();
+    expect(passwordError).toBeInTheDocument();
+  });
+
+  test("Please supply a valid email address error appears", async () => {
+    const email = "invalidEmail";
+    const emailInput = screen.getByRole("textbox", { name: "Email" });
+    const submitButton = screen.getByRole("button", { name: "Sign Up" });
+    userEvent.type(emailInput, email);
+    userEvent.click(submitButton);
+
+    const emailError = await screen.findByText(
+      "Please supply a valid email address."
+    );
+    expect(emailError).toBeInTheDocument();
+  });
+
+  test("Password must have at least 8 characters error appears", async () => {
+    const password = "1234567";
+    const passwordInput = screen.getByText("Password");
+    const submitButton = screen.getByRole("button", { name: "Sign Up" });
+    userEvent.type(passwordInput, password);
+    userEvent.click(submitButton);
+
+    const passwordError = await screen.findByText(
+      "Password must have at least 8 characters"
+    );
+    expect(passwordError).toBeInTheDocument();
+  });
+
+  test("The passwords do not match error appears", async () => {
+    const password = "12345678";
+    const passwordRepeat = password.slice(0, -1);
+    const passwordInput = screen.getByText("Password");
+    const passwordRepeatInput = screen.getByText("Confirm password");
+    const submitButton = screen.getByRole("button", { name: "Sign Up" });
+    userEvent.type(passwordInput, password);
+    userEvent.type(passwordRepeatInput, passwordRepeat);
+    userEvent.click(submitButton);
+
+    const passwordMatchError = await screen.findByText(
+      "The passwords do not match"
+    );
+    expect(passwordMatchError).toBeInTheDocument();
+  });
 });
-
-// Please supply a valid email address.
-
-// Password must have at least 8 characters
-
-// Passwords match (The passwords do not match)
