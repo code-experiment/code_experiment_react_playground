@@ -88,6 +88,9 @@ describe("Auth Form Renders Correct Errors", () => {
 // TODO:  Possibly look into how he is doing jest mock instead of the current way that I'm doing it
 // https://claritydev.net/blog/testing-react-hook-form-with-react-testing-library/
 
+// TODO:  Possibly I can use the jest mock for making sure the function gets called like the stuff above
+//        and the Mock Service Worker from below for making sure the user is directed correctly could live in the app test file
+
 // Login
 //  - Unsuccessful
 //     - When a network error happens the correct error message appears 'Network Error'
@@ -137,7 +140,7 @@ describe("Mock Form Submissions for Login", () => {
       })
     );
     render(<App />, { route: "/login" });
-    const email = "test123@123.com";
+    const email = "valid-user@valid.com";
     const password = "12345678";
 
     const emailInput = await screen.findByRole("textbox", { name: "Email" });
