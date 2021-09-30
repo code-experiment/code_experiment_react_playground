@@ -14,6 +14,15 @@ const handlers = [
       })
     );
   }),
+  rest.post("/create-user", (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        access_token: "valid-token",
+        token_type: "bearer",
+      })
+    );
+  }),
   rest.post("/check-login", (req, res, ctx) => {
     return res(
       ctx.status(200),
