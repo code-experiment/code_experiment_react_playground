@@ -33,11 +33,6 @@ body {
   color: var(--main-font-color);
 }
 
-#root {
-  /* display: flex;
-  height: 100vh; */
-}
-
 .two-row-container {
   display: grid;
   grid-template-rows: 2fr 1fr;
