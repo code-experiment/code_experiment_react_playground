@@ -5,6 +5,7 @@ We are exploring how to use TypeScript with React and attach our front end to ou
 ## Auth
 
 ### Components
+
 - Button
   - props
     - text
@@ -16,6 +17,7 @@ We are exploring how to use TypeScript with React and attach our front end to ou
       - login
 
 ### Pages
+
 - AuthPage
   - Button
     - text
@@ -37,6 +39,7 @@ We are exploring how to use TypeScript with React and attach our front end to ou
       - signup
 
 ### Michaels Planning
+
 ```
   (initial-auth-page)
     2 buttons
