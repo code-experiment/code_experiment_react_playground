@@ -9,13 +9,11 @@ on:
 
 # jobs to run
 jobs:
-  
   # install dependencies and run test command
   test:
     name: Test
     runs-on: ubuntu-latest
     steps:
-
       # 1: setup node
       - name: Setup Node.js
         uses: actions/setup-node@v1
@@ -29,8 +27,7 @@ jobs:
       # 3: install NPM dependencies
       - name: Install dependencies
         run: yarn install
-      
+
       # 4: run test command
       - name: Run test command
         run: yarn run test
-
