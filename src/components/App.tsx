@@ -1,21 +1,12 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AuthPage from "../pages/AuthPage";
-import LoginPage from "../pages/LoginPage";
-import SignupPage from "../pages/SignupPage";
-import NoMatch from "../pages/NoMatch";
+import * as React from "react";
+import { useAuth } from "../contexts/AuthContext";
+import AuthenticatedApp from "./AuthenticatedApp";
+import UnauthenticatedApp from "./UnauthenticatedApp";
 
+// Got the idea for this type of app from https://kentcdodds.com/blog/authentication-in-react-applications
 function App() {
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={AuthPage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/sign-up" component={SignupPage} />
-        <Route component={NoMatch} />
-      </Switch>
-    </Router>
-  );
+  const { user } = useAuth();
+  return user ? <AuthenticatedApp /> : <UnauthenticatedApp />;
 }
 
 export default App;

@@ -1,15 +1,13 @@
 import * as React from "react";
-import Button from "../components/Button";
+import ButtonLink from "../components/ButtonLink";
 import wave from "../images/login_signup_bottom_wave_placeholder.png";
-import { useHistory } from "react-router-dom";
 
 const AuthPage = () => {
-  let history = useHistory();
   return (
     <div className="two-row-container">
       <div className="top-content">
         <h1>TODO APP</h1>
-        <h2>Welcome to my todo</h2>
+        <h2>Welcome to my todos</h2>
         <p>Whats going to happen tomorrow?</p>
       </div>
       <div
@@ -17,15 +15,15 @@ const AuthPage = () => {
         style={{ backgroundImage: `url(${wave})` }}
       >
         <div className="button-wrapper">
-          <Button text="Log In" onClick={() => history.push("/login")} />
-          <Button
+          <ButtonLink text="Log In" route={"/login"} />
+          <ButtonLink
             text="Sign Up"
             styles={{
               backgroundColor: "transparent",
               boxShadow: "none",
               color: "white",
             }}
-            onClick={() => history.push("/sign-up")}
+            route={"/sign-up"}
           />
         </div>
       </div>

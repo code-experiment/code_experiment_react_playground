@@ -1,13 +1,13 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-const LoginPage = () => {
+const NoMatch = () => {
   return (
     <div>
-      <h1>No Match</h1>
-      <Link to="/">Go Back Home</Link>
+      <h1>Uh Oh.. This page doesn't exist</h1>
+      <Link to="/">Go back home</Link>
     </div>
   );
 };
 
-export default LoginPage;
+export default NoMatch;

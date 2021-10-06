@@ -1,12 +1,14 @@
 import * as React from "react";
-import AuthForm from "../components/AuthForm";
+import Authform from "../components/AuthForm";
 
 const SignupPage = () => {
   return (
-    <div>
-      <h1>Create account</h1>
-      <div>Sign up to continue</div>
-      <AuthForm />
+    <div className="auth-container">
+      <div className="top-content">
+        <h1>Create account</h1>
+        <div>Sign up to continue</div>
+      </div>
+      <Authform signup />
     </div>
   );
 };
