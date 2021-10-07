@@ -3,10 +3,17 @@ import * as React from "react";
 import { AxiosError } from "axios";
 import api from "../utils/api";
 
+interface Todo {
+  complete: Boolean;
+  id: Number;
+  owner_id: Number;
+  title: String;
+}
+
 interface IauthContext {
   status: string;
   error: null | string;
-  user: null | {};
+  user: null | { username: string; id: Number; todos: Array<Todo> };
   login: (token: string) => void;
   logout: () => void;
 }
@@ -14,7 +21,7 @@ interface IauthContext {
 interface authContextState {
   status: string;
   error: null | string;
-  user: null | {};
+  user: null | { username: string; id: Number; todos: Array<Todo> };
 }
 
 const AuthContext = React.createContext<IauthContext | undefined>(undefined);
