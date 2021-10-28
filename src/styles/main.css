@@ -2,6 +2,7 @@
   --main-font: "Roboto", sans-serif;
   --main-font-color: rgba(43, 43, 43);
   --secondary-font-color: rgba(144, 144, 144);
+  --light-font-color: rgba(255, 255, 255);
 
   --main-background-color: rgba(255, 255, 255);
   --secondary-background-color: rgba(85, 105, 242);
@@ -31,6 +32,12 @@ body {
   margin: 0;
   font-family: var(--main-font);
   color: var(--main-font-color);
+}
+
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
 }
 
 .two-row-container {
@@ -144,7 +151,26 @@ body {
   color: var(--error-text-color);
 }
 
-/* Navigation */
+/* Header */
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  background-color: var(--secondary-background-color);
+  box-shadow: 0px 2px 4px 0px #00000029;
+  color: var(--light-font-color);
+}
+
+.header-link {
+  position: absolute;
+  top: 35px;
+  left: 15px;
+  color: var(--light-font-color);
+  font-size: 1.5rem;
+}
+
+/* Navigation / Footer */
 
 .nav-wrapper {
   background-color: var(--dark-background-color);
